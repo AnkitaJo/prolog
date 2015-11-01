@@ -118,6 +118,14 @@ list_length([H|T],Result) :-
 	
 %Union of two lists removing duplicates. : Exactly like my_append.
 
+%Delete the last element from a list.
+
+delete_last([],[]).
+delete_last([_],[]).
+
+delete_last([H|T],[H | Result]) :-
+	delete_last(T,Result).
+
 
 	
 
