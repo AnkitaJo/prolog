@@ -33,3 +33,21 @@ my_intersect([H1|T1],List2,Result) :-
 	\+member(H1,List2),
 	my_intersect(T1,List2,Result).
 	
+%my_flatten: flattens lists in a list too.
+
+%base case is empty list
+my_flatten([],[]).
+
+my_flatten([H|T],[ H | Result]) :-
+	\+ is_list(H),
+	my_flatten(T , Result ).
+	
+my_flatten([H|T],Result) :-
+	is_list(H),
+	my_flatten(H, TResult1),
+	my_flatten(T , TResult2 ),
+	append(TResult1,TResult2,Result).
+
+	
+	
+	
