@@ -68,6 +68,28 @@ sum_list([H|T],Result) :-
 	sum_list(T , TempResult),
 	Result is TResult + TempResult.
 
+%count number of occurences of given element in the list.
+
+count_all(_,[],0).
+count_all(E,[H|T],Result) :-
+	\+ is_list(H),
+	E == H,
+	count_all(E,T,TResult),
+	Result is TResult + 1.
 	
+count_all(E,[H|T],Result) :-
+	\+ is_list(H),
+	E \= H,
+	count_all(E,T,Result).
+		
+count_all(E,[H|T],Result) :-
+	is_list(H),
+	count_all(E,H,TResult1),
+	count_all(E,T,TResult2),
+	Result is TResult1+TResult2.
+	
+
+	
+
 	
 	
