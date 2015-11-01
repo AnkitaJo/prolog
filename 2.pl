@@ -101,6 +101,23 @@ my_append([H|T],List2,Result) :-
 	member(H,List2),
 	my_append(T, List2 , Result).
 	
+%List length gives length of a list.
+
+list_length([],0).
+
+list_length([H|T],Result) :-
+	\+ is_list(H),
+	list_length(T,TResult),
+	Result is TResult + 1.
+	
+list_length([H|T],Result) :-
+	is_list(H),
+	list_length(H,TResult1),
+	list_length(T,TResult2),
+	Result is TResult1 + TResult2.
+	
+
+	
 
 	
 	
