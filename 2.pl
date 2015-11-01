@@ -14,4 +14,22 @@ fibonacci(N,R):-
 %intersection of two list. remove duplicates
 
 %base case 1
-my_intersect([],)
+my_intersect([],_,[]).
+%base case 2
+my_intersect(_,[],[]).
+
+my_intersect([H1|T1],List2,[TResult|Result]) :-
+	is_list(H1),
+	my_intersect(H1,List2,TResult),
+	my_intersect(T1,List2,Result).
+
+my_intersect([H1|T1],List2,[H1|Result]) :-
+	\+ is_list(H1),
+	member(H1,List2),
+	my_intersect(T1,List2,Result).
+
+my_intersect([H1|T1],List2,Result) :-
+	\+ is_list(H1),
+	\+member(H1,List2),
+	my_intersect(T1,List2,Result).
+	
