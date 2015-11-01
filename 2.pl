@@ -116,6 +116,10 @@ list_length([H|T],Result) :-
 	list_length(T,TResult2),
 	Result is TResult1 + TResult2.
 	
+%Union of two lists removing duplicates. : Exactly like my_append.
+
+
+	
 
 	
 
