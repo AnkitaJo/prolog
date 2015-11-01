@@ -87,6 +87,23 @@ count_all(E,[H|T],Result) :-
 	count_all(E,H,TResult1),
 	count_all(E,T,TResult2),
 	Result is TResult1+TResult2.
+
+%my_append: appends two lists.
+
+my_append(List1,[],List1).
+my_append([],List2,List2).
+
+my_append([H|T],List2,[H|Result]) :-
+	\+ member(H,List2),
+	my_append(T, List2 , Result).
+	
+my_append([H|T],List2,Result) :-
+	member(H,List2),
+	my_append(T, List2 , Result).
+	
+
+	
+	
 	
 
 	
