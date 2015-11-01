@@ -53,6 +53,21 @@ my_flatten([H|T],Result) :-
 is_a_list([]).
 is_a_list([_|_]).
 
+%sum of list
+
+sum_list([],0).
+
+sum_list([H|T],Result) :-
+	\+ is_list(H),
+	sum_list(T,TempResult),
+	Result is TempResult + H.
+	
+sum_list([H|T],Result) :-
+	is_list(H),
+	sum_list(H, TResult),
+	sum_list(T , TempResult),
+	Result is TResult + TempResult.
+
 	
 	
 	
