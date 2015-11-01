@@ -47,6 +47,11 @@ my_flatten([H|T],Result) :-
 	my_flatten(H, TResult1),
 	my_flatten(T , TResult2 ),
 	append(TResult1,TResult2,Result).
+	
+%is_a_list
+
+is_a_list([]).
+is_a_list([_|_]).
 
 	
 	
