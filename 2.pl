@@ -126,6 +126,42 @@ delete_last([_],[]).
 delete_last([H|T],[H | Result]) :-
 	delete_last(T,Result).
 
+%delete all occurences of an element from a list
+delete_all(_,[],[]).
+
+delete_all(E,[H|T],[H|Result]):-
+	\+is_list(H),
+	E \= H,
+	delete_all(E,T,Result).
+	
+delete_all(E,[H|T],Result):-
+	\+is_list(H),
+	E == H,
+	delete_all(E,T,Result).
+	
+delete_all(E,[H|T],Result):-
+	is_list(H),
+	delete_all(E,H,TResult1),
+	delete_all(E,T,TResult2),
+	append(TResult1,TResult2,Result).
+
+%reverse the list and all sublists too.
+my_reverse([],[]).
+my_reverse([H|T],Result) :-
+	\+is_list(H),
+	my_reverse(T,TResult),
+	append(TResult,[H],Result).
+
+my_reverse([H|T],Result) :-
+	is_list(H),
+	my_reverse(H,TResult1),
+	my_reverse(T,TResult2),
+	append(TResult2,TResult1,Result).
+
+	
+	
+
+
 
 	
 
