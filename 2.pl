@@ -158,12 +158,24 @@ my_reverse([H|T],Result) :-
 	my_reverse(T,TResult2),
 	append(TResult2,TResult1,Result).
 
-	
-	
+%delete_first: delete first element from the list.
 
+delete_first(_,[],[]).
 
-
+delete_first(E, [H|T] , T) :-
+	\+ is_list(H),
+	E == H.
 	
+delete_first(E, [H|T] , [H|Result]) :-
+	\+ is_list(H),
+	E \== H,
+	delete_first(E,T,Result).
+
+delete_first(E,[H|T],Result) :-
+	is_list(H),
+	delete_first(E,H,TResult1),
+	delete_first(E,T,TResult2).
+	append(TResult1,TResult2,Result).
 
 	
 
