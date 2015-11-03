@@ -230,6 +230,12 @@ absval(X, X) :-
 	X > 0.
 absval(0,0).
 
+%rotate list left
+
+rotate_left([_],[_]).
+rotate_left([H|T],R) :-
+	append(T,[H],R).
+
 	
 	
 	
