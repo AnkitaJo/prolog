@@ -235,7 +235,13 @@ absval(0,0).
 rotate_left([_],[_]).
 rotate_left([H|T],R) :-
 	append(T,[H],R).
+	
+%Rotate right
 
+rotate_right([_],[_]).
+rotate_right([H|T],[HResult|Result]) :-
+	reverse([H|T],[HResult|TResult]),
+	reverse(TResult,Result).
 	
 	
 	
