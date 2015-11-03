@@ -50,6 +50,24 @@ my_flatten_aux([H|T] , Stack , Result) :-
 	my_flatten_aux(H,Stack,HeadResult),
 	my_flatten_aux(T,HeadResult,Result).
 	
+%Tail recursive intersect
+
+my_intersect(List1,List2,Intersect, Length) :-
+	my_intersect_aux(List1,List2,[],0,Intersect,Length).
+
+my_intersect_aux([], _ , Intersect , Length ,Intersect , Length).
+	
+my_intersect_aux([H|T] , List2 ,Stack , TLength, Intersect , Length) :-
+	member(H,List2),
+	NewLen is TLength+1,
+	my_intersect_aux(T,List2,[H|Stack],NewLen,Intersect,Length).
+	
+my_intersect_aux([H|T] , List2 ,Stack , TLength, Intersect , Length) :-
+	\+ member(H,List2),
+	my_intersect_aux(T,List2,Stack,TLength, Intersect, Length).
+	
+
+	
 
 
 
