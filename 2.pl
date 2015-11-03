@@ -221,6 +221,14 @@ test9 :-
 	write(L),
 	nl.
 	
+%check absolute value
+
+absval(X,Value) :-
+	X < 0,
+	Value is X * -1.
+absval(X, X) :-
+	X > 0.
+absval(0,0).
 
 	
 	
