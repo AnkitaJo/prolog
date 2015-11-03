@@ -66,6 +66,22 @@ my_intersect_aux([H|T] , List2 ,Stack , TLength, Intersect , Length) :-
 	\+ member(H,List2),
 	my_intersect_aux(T,List2,Stack,TLength, Intersect, Length).
 	
+%Count all occurences of element in tail recursion
+
+count_all(E, List , Count) :-
+	count_all_aux(E , List , 0, Count).
+
+count_all_aux(_, [] , Accumulator , Accumulator).
+
+count_all_aux(E,[E|T],Accumulator,Count):-
+	NewLen is Accumulator + 1,
+	count_all_aux(E,T,NewLen,Count).
+	
+count_all_aux(E,[H|T],Accumulator,Count):-
+	E \== H,
+	count_all_aux(E,T,Accumulator,Count).
+
+
 
 	
 

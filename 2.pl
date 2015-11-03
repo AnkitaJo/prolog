@@ -177,14 +177,50 @@ delete_first(E,[H|T],Result) :-
 	delete_first(E,T,TResult2),
 	append(TResult1,TResult2,Result).
 	
-print_splits([],[]).
-print_splits([H|T]) :-
-	write('H'),
-	write(' '),
-	write('T'),
-	print_splits([H,T|_]).
-		
-		
+%bagof , setif and findall practise
+
+father(charles,michael).
+father(jim,melody).
+father(michael,cathy).
+father(joe,cathy).
+
+test1 :- 
+	findall(X,father(X,_),L),
+	write(L),
+	nl.
+test2 :- 
+	findall(X,father(_,X),L),
+	write(L),
+	nl.
+test3 :-
+	findall(dad(X),father(X,_),L),
+	write(L),
+	nl.
+test4 :-
+	bagof(X,father(X,_),L),
+	write(L),
+	nl.
+test5 :-
+	bagof(X,Y^father(X,Y),L),
+	write(L),
+	nl.
+test6 :-
+	setof(X,Y^father(X,Y),L),
+	write(L),
+	nl.
+test7 :-
+	setof(X,father(X,_),L),
+	write(L),
+	nl.
+test8:- 
+	setof(Y,father(_,Y),L),
+	write(L),
+	nl.
+test9 :-
+	bagof(Y,father(_,Y),L),
+	write(L),
+	nl.
+	
 
 	
 	
