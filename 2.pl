@@ -243,6 +243,46 @@ rotate_right([H|T],[HResult|Result]) :-
 	reverse([H|T],[HResult|TResult]),
 	reverse(TResult,Result).
 	
+%find even length lists without using arithmetic.
+
+even_length([]).
+even_length([_,_|T]) :- even_length(T).
+
+%find odd length lists
+
+odd_length([]).
+odd_length([_,_|T]) :- 
+	length(1,T),!,
+	odd_length(T).
+
+%palindrome lists
+
+palindrome([]).
+
+palindrome(List) :-
+	reverse(List,RList),
+	List == RList.
+	
+%Divide lists
+
+%divide_list([],[],[]).
+
+%divide_list([_],[_],[]).
+
+
+
+divide_list(L,List1, List2) :- 
+	divide_list_aux(L , [] , List1 , [], List2 ).
+	
+divide_list_aux([H] , List1 ,[H|List1] , List2 , List2).
+divide_list_aux([] , List1 , List1 , List2 , List2).	
+divide_list_aux([H1,H2|T] , Acc1, List1 ,Acc2 , List2 )	:- 
+	append(Acc1,[H1],NAcc1),
+	append(Acc2,[H2],NAcc2),
+	divide_list_aux(T,NAcc1,List1, NAcc2,List2).
+	
+
+	
 	
 	
 

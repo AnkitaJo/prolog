@@ -82,6 +82,17 @@ count_all_aux(E,[H|T],Accumulator,Count):-
 	count_all_aux(E,T,Accumulator,Count).
 
 
+%Divide lists
+
+divide_list(L,List1, List2) :- 
+	divide_list_aux(L , [] , List1 , [], List2 ).
+	
+divide_list_aux([H] , List1 ,[H|List1] , List2 , List2).
+divide_list_aux([] , List1 , List1 , List2 , List2).	
+divide_list_aux([H1,H2|T] , Acc1, List1 ,Acc2 , List2 )	:- 
+	append(Acc1,[H1],NAcc1),
+	append(Acc2,[H2],NAcc2),
+	divide_list_aux(T,NAcc1,List1, NAcc2,List2).
 
 	
 
