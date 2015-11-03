@@ -174,10 +174,17 @@ delete_first(E, [H|T] , [H|Result]) :-
 delete_first(E,[H|T],Result) :-
 	is_list(H),
 	delete_first(E,H,TResult1),
-	delete_first(E,T,TResult2).
+	delete_first(E,T,TResult2),
 	append(TResult1,TResult2,Result).
-
 	
+print_splits([],[]).
+print_splits([H|T]) :-
+	write('H'),
+	write(' '),
+	write('T'),
+	print_splits([H,T|_]).
+		
+		
 
 	
 	
