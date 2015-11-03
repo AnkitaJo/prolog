@@ -33,3 +33,25 @@ fibonacci_aux(N,F,I,J,K) :-
 	NewI is I+1,
 	fibonacci_aux(N,F,NewI,NewJ,J).
 	
+%Tail recusrsive version of flatten.
+
+my_flatten(List, Result) :-
+	my_flatten_aux(List, [] ,Result).
+	
+my_flatten_aux([],Result,Result).	
+
+my_flatten_aux([H|T] , Stack , Result) :-
+	\+ is_list(H),
+	append(Stack,[H],TempResult),
+	my_flatten_aux(T,TempResult,Result).
+	
+my_flatten_aux([H|T] , Stack , Result) :-
+	is_list(H),
+	my_flatten_aux(H,Stack,HeadResult),
+	my_flatten_aux(T,HeadResult,Result).
+	
+
+
+
+
+	
