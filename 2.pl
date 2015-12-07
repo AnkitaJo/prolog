@@ -263,11 +263,7 @@ palindrome(List) :-
 	reverse(List,RList),
 	List == RList.
 	
-emp('John', 'vp',27500).
-emp('Bob,'admin',14200).
-emp('Bill','clerk',14220).
-emp('B' ,'some',34567).	
-findall()
+
 
 	
 
