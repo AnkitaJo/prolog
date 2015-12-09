@@ -208,6 +208,53 @@ range(N1,N2,[N1|L]) :-
 	NewN1 is N1+1,
 	range(NewN1,N2,L).
 	
+%insert element at kth location of a list.
+
+insert_at(E,List,1,[E|List]).
+insert_at(E , [H|T] , N , [H|Result]) :-
+	NewN is N-1,
+	insert_at(E, T , NewN , Result).
+	
+%various forms of permutations.
+%form1
+perm_1(List1,List2) :-
+	length(List1,N),
+	length(List2,N),
+	subset1(List1,List2).
+	subset1([],_).
+	subset1([H|T],List) :- 
+		member(H,List),
+		subset1(T,List).
+	
+%form2
+perm2([],[]).
+perm2(List,[H|T]) :-
+	append(First,[H|Rest] ,List),
+	append(First,Rest,NewList),
+	perm2(NewList,T).
+	
+%chosing N elements from list
+
+choose1(_,0,[]).
+choose1(List,N,Result) :-
+	length(Result,N),
+	member(X,List),
+	append(_,[X|Tail],List),
+	[X|TempRes] = Result,
+	choose1(Tail,_,TempRes).
+
+%split a list into two parts. Length of the first part is given.
+
+split(L,0,[],L).
+split([H|T],N,[H|Result1],Result2) :- 
+	N > 0,
+	!,
+	NewN is N-1,
+	split(T,NewN,Result1,Result2).
+
+	
+	
+	
 
 
 
